@@ -3,13 +3,15 @@ import Helmet from 'react-helmet';
 import { graphql, Link } from 'gatsby'
 import Layout from "../components/layout"
 import HeroHeader from "../components/heroHeader"
-import HeaderPhoto from "../images/Portra400.jpg"
+import Img from 'gatsby-image'
 
 const IndexPage =  ({
   data: {
-    site
+    site,
+    file,
   },
 }) => {
+
   return (
     <Layout>
       <Helmet>
@@ -19,7 +21,7 @@ const IndexPage =  ({
       </Helmet>
       <Link to='/blogposts' className="button -primary">Blog posts</Link>
       <HeroHeader/>
-      <img src={HeaderPhoto} alt="First pic" />
+      <Img fluid={file.childImageSharp.fluid}/>
     </Layout>
   )
 }
@@ -31,6 +33,17 @@ export const pageQuery = graphql`
         title
         description
         w3l_dom_key
+      }
+    }
+    file(relativePath: {eq: "Portra400.jpg"}) {
+      id
+      childImageSharp {
+        fixed {
+          ...GatsbyImageSharpFixed
+        }
+        fluid {
+          ...GatsbyImageSharpFluid
+        }
       }
     }
   }
