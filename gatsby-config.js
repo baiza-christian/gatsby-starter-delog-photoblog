@@ -53,6 +53,13 @@ module.exports = {
         icon: "src/images/icon.png",
       },
     },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options:{
+        name: `images`,
+        path: `${__dirname}/src/images`
+      },
+    },
     `gatsby-plugin-sass`, 
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-netlify-cms`,
@@ -60,5 +67,7 @@ module.exports = {
     // siteURL is a must for sitemap generation
     `gatsby-plugin-sitemap`,
     `gatsby-plugin-offline`,
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
   ],
 }
